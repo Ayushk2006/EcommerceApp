@@ -55,12 +55,12 @@ const Cart = () => {
     <>
     
       <div className="p-2 md:p-4">
-        <h2 className="text-lg md:text-2xl font-bold text-slate-600">
+        <h2 className="capitalize text-lg md:text-2xl  font-semibold before:rounded-lg relative before:absolute before:-bottom-2 before:content before:left-0 before:w-32 before:h-1 before:bg-red-500 transition-all ease-in-out duration-100">
           Your Cart Items
         </h2>
 
         {productCartItem[0] ?
-        <div className="my-4 flex gap-3">
+        <div className="my-4 flex gap-3 flex gap-3 flex flex-col md:flex-row w-full mt-1">
           {/* display cart items  */}
           <div className="w-full max-w-3xl ">
             {productCartItem.map((el) => {
@@ -80,7 +80,7 @@ const Cart = () => {
           </div>
 
           {/* total cart item  */}
-          <div className="w-full max-w-md  ml-auto">
+          <div className="w-full min-w-210 mt-5 md:mt-0 md:min-w-350 max-w-lg  relative">
             <h2 className="bg-blue-500 text-white p-2 text-lg">Summary</h2>
             <div className="flex w-full py-2 text-lg border-b">
               <p>Total Qty :</p>
