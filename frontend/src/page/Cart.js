@@ -1,4 +1,4 @@
-import React from "react";
+ import React from "react";
 import { useSelector } from "react-redux";
 import CartProduct from "../component/CartProduct";
 import emptyCartImage from "../assest/empty.gif"
@@ -60,7 +60,7 @@ const Cart = () => {
         </h2>
 
         {productCartItem[0] ?
-        <div className="my-4 flex gap-3 flex gap-3 flex flex-col md:flex-row w-full mt-1">
+        <div className="my-4 flex gap-3 flex flex-col md:flex-row w-full mt-1">
           {/* display cart items  */}
           <div className="w-full max-w-3xl ">
             {productCartItem.map((el) => {
@@ -80,7 +80,7 @@ const Cart = () => {
           </div>
 
           {/* total cart item  */}
-          <div className="w-full min-w-210 mt-5 md:mt-0 md:min-w-350 max-w-lg  relative">
+          <div  className="w-full min-w-210 mt-5 md:mt-0 md:min-w-350 max-w-lg  relative">
             <h2 className="bg-blue-500 text-white p-2 text-lg">Summary</h2>
             <div className="flex w-full py-2 text-lg border-b">
               <p>Total Qty :</p>
