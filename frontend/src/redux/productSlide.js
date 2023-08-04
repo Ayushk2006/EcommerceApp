@@ -1,10 +1,17 @@
-import { createSlice } from "@reduxjs/toolkit";
+ import { createSlice } from "@reduxjs/toolkit";
 import { toast } from "react-hot-toast";
+
+ 
+const item = localStorage.getItem('cartItem') == null? [] : JSON.parse(localStorage.getItem('cartItem'));
+
 
 const initialState = {
   productList: [],
-  cartItem: [],
+  cartItem:item
 };
+
+
+
 
 export const productSlice = createSlice({
   name: "product",
@@ -13,23 +20,28 @@ export const productSlice = createSlice({
     setDataProduct: (state, action) => {
       state.productList = [...action.payload];
     },
-    addCartItem: (state, action) => {
+    addCartItem:(state, action) => {
       const check = state.cartItem.some((el) => el._id === action.payload._id);
       if (check) {
         toast("Already Item in Cart");
       } else {
-        toast("Item Add successfully");
         const total = action.payload.price;
         state.cartItem = [
           ...state.cartItem,
           { ...action.payload, qty: 1, total: total },
         ];
+        toast("Item Add successfully");
       }
+
+      localStorage.setItem('cartItem' , JSON.stringify(state.cartItem));
     },
     deleteCartItem: (state, action) => {
       toast("one Item Delete");
       const index = state.cartItem.findIndex((el) => el._id === action.payload);
       state.cartItem.splice(index, 1);
+      localStorage.removeItem('cartItem');
+      localStorage.setItem('cartItem' , JSON.stringify(state.cartItem));
+      
       // console.log(index);
     },
     increaseQty: (state, action) => {
@@ -42,6 +54,8 @@ export const productSlice = createSlice({
       const total = price * qtyInc;
 
       state.cartItem[index].total = total;
+      localStorage.removeItem('cartItem');
+      localStorage.setItem('cartItem' , JSON.stringify(state.cartItem));
     },
     decreaseQty: (state, action) => {
       const index = state.cartItem.findIndex((el) => el._id === action.payload);
@@ -54,6 +68,8 @@ export const productSlice = createSlice({
         const total = price * qtyDec;
 
         state.cartItem[index].total = total;
+        localStorage.removeItem('cartItem');
+        localStorage.setItem('cartItem' , JSON.stringify(state.cartItem));
       }
     },
   },
